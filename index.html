@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thinking of you</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fdfbf7;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #4a4a4a;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 2s ease forwards;
+        }
+
+        h1 {
+            font-weight: 300;
+            letter-spacing: 4px;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #8c8c8c;
+        }
+
+        .heart-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e8a7a7;
+            position: relative;
+            transform: rotate(-45deg);
+            margin: 0 auto 30px;
+        }
+
+        .heart-icon::before,
+        .heart-icon::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background-color: #e8a7a7;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart-icon::before { top: -25px; left: 0; }
+        .heart-icon::after { left: 25px; top: 0; }
+
+        /* Animation หัวใจเต้น */
+        .heart-beat {
+            animation: heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: rotate(-45deg) scale(1); }
+            20% { transform: rotate(-45deg) scale(1.1); }
+            40% { transform: rotate(-45deg) scale(1); }
+            60% { transform: rotate(-45deg) scale(1.1); }
+            100% { transform: rotate(-45deg) scale(1); }
+        }
+
+        .hidden-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #b5b5b5;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .line {
+            width: 30px;
+            height: 1px;
+            background: #d4d4d4;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="heart" class="heart-icon"></div>
+        <h1>I'm sorry kub jao good boy</h1>
+        <div class="line"></div>
+        <p id="msg" class="hidden-text">I really do.</p>
+    </div>
+
+    <script>
+        // ฟังก์ชันนี้จะทำงานทันทีที่โหลดหน้าเว็บเสร็จ
+        window.onload = function() {
+            // หน่วงเวลา 1 วินาทีให้หน้าเว็บค่อยๆ Fade In ขึ้นมาก่อนค่อยขึ้น Pop-up
+            setTimeout(() => {
+                alert("มาง้อ...");
+                
+                const beGood = confirm("ดีกันมั้ย?");
+                
+                if (beGood) {
+                    alert("พี่ผิดไปแล้วขอโทษค้าบ 🥺✨");
+                    // พอดีกันแล้ว ให้หัวใจเต้น และโชว์ข้อความด้านล่าง
+                    document.getElementById('heart').classList.add('heart-beat');
+                    document.getElementById('msg').style.opacity = '1';
+                } else {
+                    alert("พี่ผิดไปแล้วจริงๆ... ขอโทษนะค้าบ 🙏");
+                    // ถึงไม่กดตกลง ก็โชว์ข้อความบอกความในใจอยู่ดี
+                    document.getElementById('msg').style.opacity = '1';
+                }
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
